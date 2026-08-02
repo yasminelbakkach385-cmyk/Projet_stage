@@ -15,7 +15,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 COPY . .
 
-RUN composer install --no-interaction --no-dev --optimize-autoloader || true
+RUN composer install --no-interaction --no-dev --optimize-autoloader 
 
 EXPOSE 8000
 
