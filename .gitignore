@@ -1,0 +1,20 @@
+# Dépendances (trop lourdes, se réinstallent automatiquement)
+node_modules/
+vendor/
+
+# Fichiers d'environnement (contiennent des mots de passe)
+.env
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Fichiers Laravel générés automatiquement
+backend/storage/*.key
+backend/bootstrap/cache/*.php
+
+# Base de données locale (si SQLite est utilisé accidentellement)
+backend/database/database.sqlite
