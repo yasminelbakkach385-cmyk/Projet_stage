@@ -18,3 +18,7 @@ backend/bootstrap/cache/*.php
 
 # Base de données locale (si SQLite est utilisé accidentellement)
 backend/database/database.sqlite
+
+# Fichiers Python temporaires (ai-service)
+ai-service/__pycache__/
+*.pyc
