@@ -1,0 +1,38 @@
+<div class="dashboard">
+  <h1>Tableau de bord - Plaintes</h1>
+
+  <div *ngIf="chargement">
+    <p>Chargement en cours...</p>
+  </div>
+
+  <div *ngIf="erreurTexte">
+    <p style="color: red;"><strong>Erreur :</strong> {{ erreurTexte }}</p>
+  </div>
+
+  <div *ngIf="stats && !chargement">
+    <p style="color: #666; font-size: 0.9em;">
+      Dernière mise à jour : {{ derniereMiseAJour | date:'HH:mm:ss' }}
+      (rafraîchissement automatique toutes les 15 secondes)
+    </p>
+
+    <p><strong>Total des plaintes :</strong> {{ stats.total }}</p>
+    <p><strong>Plaintes urgentes :</strong> {{ stats.urgentes }}</p>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-top: 20px;">
+      <div style="width: 400px;">
+        <h2>Par catégorie</h2>
+        <canvas #graphiqueCategorie></canvas>
+      </div>
+
+      <div style="width: 350px;">
+        <h2>Par statut</h2>
+        <canvas #graphiqueStatut></canvas>
+      </div>
+
+      <div style="width: 400px;">
+        <h2>Par quartier</h2>
+        <canvas #graphiqueQuartier></canvas>
+      </div>
+    </div>
+  </div>
+</div>
