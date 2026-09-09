@@ -1,0 +1,61 @@
+<app-header></app-header>
+
+<div class="page-plainte">
+  <div class="carte-plainte">
+    <h1>{{ t.t('carteDeposer') }}</h1>
+
+    <div *ngIf="succes" class="message-succes">
+      ✅ {{ t.t('plainteEnvoyee') }}
+      <p class="numero-suivi" *ngIf="numeroSuivi">{{ t.t('numeroSuiviLabel') }} : <strong>#{{ numeroSuivi }}</strong></p>
+      <p><a routerLink="/">{{ t.t('retourAccueil') }}</a></p>
+    </div>
+
+    <form *ngIf="!succes" (ngSubmit)="envoyer()">
+      <div *ngIf="erreur" class="message-erreur">{{ erreur }}</div>
+
+      <label>{{ t.t('typeReclamation') }} *</label>
+      <div class="grille-categories">
+        <button
+          type="button"
+          *ngFor="let cat of categories"
+          class="carte-categorie"
+          [class.selectionnee]="categorieChoisie === cat.valeur"
+          (click)="choisirCategorie(cat.valeur)"
+        >
+          <svg *ngIf="cat.icone === 'route'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20L10 4h4l6 16M8 14h8"/></svg>
+          <svg *ngIf="cat.icone === 'ampoule'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 22h4M12 2a6 6 0 0 0-3 11.2V16h6v-2.8A6 6 0 0 0 12 2z"/></svg>
+          <svg *ngIf="cat.icone === 'goutte'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2s-7 8-7 13a7 7 0 0 0 14 0c0-5-7-13-7-13z"/></svg>
+          <svg *ngIf="cat.icone === 'poubelle'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>
+          <svg *ngIf="cat.icone === 'feuille'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 21c8 0 14-6 14-16-10 0-14 8-14 16z"/></svg>
+          <svg *ngIf="cat.icone === 'haut-parleur'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10v4h4l5 4V6l-5 4H3z"/></svg>
+          <svg *ngIf="cat.icone === 'points'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+          <span>{{ t.t(cat.labelKey) }}</span>
+        </button>
+      </div>
+
+      <label>{{ t.t('titreAdresseLabel') }} *</label>
+      <input type="text" [(ngModel)]="titre" name="titre" required />
+
+      <label>{{ t.t('quartierLabel') }} *</label>
+      <input type="text" [(ngModel)]="quartier" name="quartier" required />
+
+      <label>{{ t.t('telephoneLabel') }}</label>
+      <input type="tel" [(ngModel)]="telephone" name="telephone" placeholder="+212XXXXXXXX" pattern="^(0|\+212)[67][0-9]{8}$" #telephoneInput="ngModel" />
+      <p class="erreur-champ" *ngIf="telephone && telephoneInput.invalid">{{ t.t('telephoneInvalide') }}</p>
+
+      <label>{{ t.t('description') }} *</label>
+      <textarea [(ngModel)]="description" name="description" rows="5" required></textarea>
+
+      <label>{{ t.t('photo') }}</label>
+      <div class="zone-fichier">
+        <input type="file" accept="image/*" (change)="surChangementPhoto($event)" id="photo-input" />
+        <label for="photo-input" class="bouton-fichier">{{ t.t('choisirFichier') }}</label>
+        <span class="nom-fichier">{{ nomPhoto || t.t('aucunFichierChoisi') }}</span>
+      </div>
+
+      <button type="submit" [disabled]="chargement">
+        {{ chargement ? t.t('envoiEnCours') : t.t('envoyerPlainte') }}
+      </button>
+    </form>
+  </div>
+</div>

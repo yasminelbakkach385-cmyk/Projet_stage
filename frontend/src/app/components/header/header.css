@@ -1,0 +1,81 @@
+.entete-site {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 10px 32px;
+  border-bottom: 1px solid var(--couleur-bordure);
+}
+
+.entete-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.entete-logo img {
+  height: 42px;
+}
+
+.entete-logo span {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--couleur-navy);
+}
+
+.entete-nav {
+  display: flex;
+  gap: 28px;
+}
+
+.entete-nav a {
+  color: var(--couleur-texte);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 6px 0;
+}
+
+.entete-nav a.actif,
+.entete-nav a:hover {
+  color: var(--couleur-turquoise);
+  border-bottom: 2px solid var(--couleur-turquoise);
+}
+
+.entete-droite {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-espace {
+  background: var(--couleur-navy);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.switch-langue {
+  display: flex;
+  gap: 4px;
+}
+
+.switch-langue button {
+  padding: 3px 8px;
+  border: 1px solid var(--couleur-bordure);
+  background: transparent;
+  color: var(--couleur-navy);
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.switch-langue button.actif {
+  background: var(--couleur-navy);
+  color: white;
+  border-color: var(--couleur-navy);
+}

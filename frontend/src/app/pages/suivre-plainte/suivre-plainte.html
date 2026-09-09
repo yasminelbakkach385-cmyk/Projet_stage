@@ -1,0 +1,77 @@
+<app-header></app-header>
+
+<div class="page-suivre">
+  <div class="carte-recherche">
+    <h1>{{ t.t('suivrePlainte') }}</h1>
+
+    <form class="formulaire-recherche" (ngSubmit)="rechercher()">
+      <label>{{ t.t('numeroDossier') }}</label>
+      <div class="ligne-recherche">
+        <input
+          type="text"
+          [(ngModel)]="numeroDossier"
+          name="numeroDossier"
+          [placeholder]="t.t('rechercherPlaceholder')"
+          required
+        />
+        <button type="submit" [disabled]="chargement()">
+          {{ chargement() ? '...' : t.t('rechercher') }}
+        </button>
+      </div>
+    </form>
+
+    <div *ngIf="erreur()" class="message-erreur">{{ t.t(erreur()) }}</div>
+  </div>
+
+  <div class="grille-resultat" *ngIf="resultat() as r">
+    <div class="colonne-timeline carte-bloc">
+      <h2>{{ t.t('suivrePlainte') }}</h2>
+      <ul class="timeline">
+        <li *ngFor="let etape of r.etapes" [class.complete]="etape.complete" [class.actuelle]="etape.actuelle">
+          <span class="point"></span>
+          <div class="contenu-etape">
+            <strong>{{ t.t(etape.cle) }}</strong>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="colonne-details carte-bloc">
+      <h2>{{ t.t('numeroDossier') }}</h2>
+
+      <div class="grille-infos">
+        <div class="info-item">
+          <span class="info-label">{{ t.t('numeroDossier') }}</span>
+          <span class="info-valeur badge">{{ r.numero }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">{{ t.t('parCategorie') }}</span>
+          <span class="info-valeur">{{ t.t(cleCategorie(r.domaine)) }}</span>
+        </div>
+      </div>
+
+      <div class="bloc-description">
+        <span class="info-label">{{ t.t('description') }}</span>
+        <p>{{ r.description }}</p>
+      </div>
+
+      <div class="bloc-satisfaction" *ngIf="!noteEnvoyee() && r.etapes[2].complete">
+        <p>{{ t.t('satisfaction') }}</p>
+        <div class="etoiles">
+          <span
+            *ngFor="let e of [1,2,3,4,5]"
+            class="etoile"
+            [class.remplie]="e <= note()"
+            (click)="choisirNote(e)"
+          >★</span>
+        </div>
+        <textarea [(ngModel)]="commentaire" name="commentaire" [placeholder]="t.t('laisserNote')" rows="2"></textarea>
+        <button type="button" class="btn-envoyer-note" (click)="envoyerNote()">{{ t.t('envoyerNote') }}</button>
+      </div>
+
+      <div class="merci-note" *ngIf="noteEnvoyee() && r.etapes[2].complete">
+        ✅ {{ t.t('avisEnvoyeMerci') }}
+      </div>
+    </div>
+  </div>
+</div>

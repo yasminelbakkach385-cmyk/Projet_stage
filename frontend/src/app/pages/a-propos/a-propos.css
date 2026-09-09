@@ -1,0 +1,71 @@
+.page-a-propos {
+  min-height: 80vh;
+  background: #F5F7FA;
+  padding: 40px 24px 80px;
+}
+
+.conteneur-a-propos {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 12px rgba(15, 45, 77, 0.08);
+}
+
+.conteneur-a-propos h1 {
+  color: #0F2D4D;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.conteneur-a-propos p {
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.bloc-contact {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #E1E5EA;
+}
+
+.bloc-contact h2 {
+  color: #0F2D4D;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+.bloc-localisation {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #E1E5EA;
+}
+
+.bloc-localisation h2 {
+  color: #0F2D4D;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.adresse-texte {
+  font-weight: 600;
+  margin-bottom: 4px !important;
+}
+
+.horaires-texte {
+  color: #6B7785;
+  font-size: 0.85rem;
+  margin-bottom: 16px !important;
+}
+
+.conteneur-carte-propos {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(15, 45, 77, 0.08);
+}
+
+.conteneur-a-propos p {
+  white-space: pre-line;
+  line-height: 1.8;
+}

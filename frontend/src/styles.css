@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  /* Couleurs principales */
+  --couleur-navy: #0F2D4D;
+  --couleur-navy-clair: #1C4870;
+  --couleur-turquoise: #17A6B5;
+  --couleur-turquoise-clair: #E6F7F8;
+
+  /* Couleurs sémantiques */
+  --couleur-succes: #2FA84F;
+  --couleur-succes-fond: #E8F5EA;
+  --couleur-attente: #F5A623;
+  --couleur-attente-fond: #FEF3E2;
+  --couleur-info: #4A90D9;
+  --couleur-info-fond: #E9F2FC;
+  --couleur-violet: #7B68EE;
+  --couleur-danger: #E74C3C;
+
+  /* Neutres */
+  --couleur-fond: #F5F7FA;
+  --couleur-carte: #FFFFFF;
+  --couleur-texte: #2B2B2B;
+  --couleur-texte-clair: #6B7785;
+  --couleur-bordure: #E1E5EA;
+
+  --rayon: 10px;
+  --ombre: 0 2px 12px rgba(15, 45, 77, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--couleur-fond);
+}

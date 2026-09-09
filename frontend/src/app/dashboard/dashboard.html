@@ -1,37 +1,129 @@
-<div class="dashboard">
-  <h1>Tableau de bord - Plaintes</h1>
+<app-header></app-header>
 
-  <div *ngIf="chargement">
-    <p>Chargement en cours...</p>
-  </div>
+<div class="conteneur-dashboard">
+  <aside class="barre-laterale">
+    <nav>
+      <a class="lien-menu actif">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        <span>{{ t.t('tableauDeBord') }}</span>
+      </a>
+      <a class="lien-menu" routerLink="/reclamations-admin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        <span>{{ t.t('reclamations') }}</span>
+      </a>
+      <a class="lien-menu" routerLink="/rapports">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18M8 17V9m5 8V5m5 12v-6"/></svg>
+        <span>{{ t.t('rapports') }}</span>
+      </a>
+      <a class="lien-menu" routerLink="/carte-admin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 20l-5-2V4l5 2 6-2 5 2v14l-5-2-6 2z"/></svg>
+        <span>{{ t.t('carte') }}</span>
+      </a>
+      <a class="lien-menu" routerLink="/annonces-admin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v4H4zM4 12h10v8H4zM17 12h3v8h-3z"/></svg>
+        <span>{{ t.t('annonces') }}</span>
+      </a>
+      <a class="lien-menu" routerLink="/parametres">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+        <span>{{ t.t('parametres') }}</span>
+      </a>
+    </nav>
+    <button class="lien-menu lien-deconnexion" (click)="seDeconnecter()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      <span>{{ t.t('deconnexion') }}</span>
+    </button>
+  </aside>
 
-  <div *ngIf="erreurTexte">
-    <p style="color: red;"><strong>Erreur :</strong> {{ erreurTexte }}</p>
-  </div>
+  <div class="page-dashboard">
+    <h1>{{ t.t('tableauDeBord') }}</h1>
 
-  <div *ngIf="stats && !chargement">
-    <p style="color: #666; font-size: 0.9em;">
-      Dernière mise à jour : {{ derniereMiseAJour | date:'HH:mm:ss' }}
-      (rafraîchissement automatique toutes les 15 secondes)
-    </p>
+    <div *ngIf="chargement" class="etat-chargement">
+      <p>{{ t.t('chargementDonnees') }}</p>
+    </div>
 
-    <p><strong>Total des plaintes :</strong> {{ stats.total }}</p>
-    <p><strong>Plaintes urgentes :</strong> {{ stats.urgentes }}</p>
+    <div *ngIf="erreurTexte" class="message-erreur">
+      <strong>Erreur :</strong> {{ erreurTexte }}
+    </div>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-top: 20px;">
-      <div style="width: 400px;">
-        <h2>Par catégorie</h2>
-        <canvas #graphiqueCategorie></canvas>
+    <div *ngIf="stats && !chargement">
+      <p class="maj-texte">
+        {{ t.t('derniereMaj') }} : {{ derniereMiseAJour | date:'HH:mm:ss' }}
+      </p>
+
+      <div class="cartes-stats">
+        <div class="carte-stat">
+          <span class="valeur">{{ stats.total }}</span>
+          <span class="label">{{ t.t('total') }}</span>
+        </div>
+        <div class="carte-stat rouge">
+          <span class="valeur">{{ trouverStatut('en_attente') }}</span>
+          <span class="label">{{ t.t('statutEnAttente') }}</span>
+        </div>
+        <div class="carte-stat orange">
+          <span class="valeur">{{ trouverStatut('en_cours') }}</span>
+          <span class="label">{{ t.t('statutEnCoursCourt') }}</span>
+        </div>
+        <div class="carte-stat vert">
+          <span class="valeur">{{ trouverStatut('traite') }}</span>
+          <span class="label">{{ t.t('statutTraiteCourt') }}</span>
+        </div>
+        <div class="carte-stat urgente">
+          <span class="valeur">{{ stats.urgentes }}</span>
+          <span class="label">{{ t.t('urgentesLabel') }}</span>
+        </div>
       </div>
 
-      <div style="width: 350px;">
-        <h2>Par statut</h2>
-        <canvas #graphiqueStatut></canvas>
+      <div class="grille-graphiques">
+        <div class="bloc-graphique">
+          <h2>{{ t.t('parCategorie') }}</h2>
+          <canvas #graphiqueCategorie></canvas>
+        </div>
+
+        <div class="bloc-graphique bloc-graphique-large">
+          <h2>{{ t.t('evolutionMensuelle') }}</h2>
+          <canvas #graphiqueEvolution></canvas>
+        </div>
       </div>
 
-      <div style="width: 400px;">
-        <h2>Par quartier</h2>
-        <canvas #graphiqueQuartier></canvas>
+      <div class="bloc-tableau">
+        <h2>{{ t.t('tableauReclamations') }}</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t.t('colNumero') }}</th>
+              <th>{{ t.t('colType') }}</th>
+              <th>{{ t.t('colQuartier') }}</th>
+              <th>{{ t.t('colDate') }}</th>
+              <th>{{ t.t('colStatut') }}</th>
+              <th>{{ t.t('colActions') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of reclamations">
+              <td>#{{ r.id }}</td>
+              <td>{{ t.t(cleCategorie(r.categorie)) }}</td>
+              <td>{{ r.quartier || '—' }}</td>
+              <td>{{ r.created_at | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <span class="badge-statut" [ngClass]="classeStatut(r.statut)">
+                  {{ t.t(cleStatut(r.statut)) }}
+                </span>
+              </td>
+              <td class="actions-cellule">
+                <button
+                  *ngIf="r.statut !== 'traite'"
+                  class="btn-action"
+                  (click)="changerStatut(r, r.statut === 'en_attente' ? 'en_cours' : 'traite')"
+                >
+                  {{ t.t('marquerSuivant') }}
+                </button>
+                <button class="btn-action btn-supprimer" (click)="supprimer(r.id)">
+                  {{ t.t('supprimerAction') }}
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

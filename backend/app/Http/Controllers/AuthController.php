@@ -15,12 +15,20 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'telephone' => 'nullable|string|max:20',
             'password' => 'required|string|min:6',
         ]);
 
-        $user = User::create([
+        if (str_ends_with(strtolower($validated['email']), '@commune.ma')) {
+            throw ValidationException::withMessages([
+                'email' => ['Ce domaine est réservé aux comptes employés.'],
+            ]);
+        }
+
+                $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
+            'telephone' => $validated['telephone'] ?? null,
             'password' => Hash::make($validated['password']),
             'role' => 'citoyen',
         ]);

@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<div class="accueil">
+  <header class="entete">
+    <div class="entete-overlay"></div>
+    <div class="entete-contenu">
+      <p class="eyebrow">{{ t.t('municipaliteFnideq') }}</p>
+      <h1>{{ t.t('heroTitre') }}</h1>
+      <p class="sous-titre">{{ t.t('heroSousTitre') }}</p>
+
+      <div class="hero-actions" *ngIf="!authService.estEmploye()">
+        <a routerLink="/a-propos" class="btn-hero btn-hero-vert">{{ t.t('aProposBouton') }}</a>
+      </div>
+    </div>
+  </header>
+
+  <svg class="vague" viewBox="0 0 1200 40" preserveAspectRatio="none">
+    <path d="M0,20 C150,40 350,0 600,20 C850,40 1050,0 1200,20 L1200,40 L0,40 Z" fill="currentColor"/>
+  </svg>
+
+  <footer class="bas-de-page">
+    <div class="colonne-actu">
+      <h2>{{ t.t('actualitesTitre') }}</h2>
+
+      <div *ngIf="annonces.length === 0" class="actu-item">
+        <p>{{ t.t('aucuneAnnonce') }}</p>
+      </div>
+
+      <div *ngFor="let annonce of annonces" class="actu-item">
+        <span class="puce"></span>
+        <div>
+          <p>{{ annonce.titre }}</p>
+          <a [routerLink]="['/annonce', annonce.id]">{{ t.t('lireLaSuite') }}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="colonne-contact">
+      <h2>{{ t.t('contactezNousTitre') }}</h2>
+      <p>📞 0539 63 20 06</p>
+      <p>✉️ communeFnideq&#64;gmail.com</p>
+    </div>
+  </footer>
+</div>

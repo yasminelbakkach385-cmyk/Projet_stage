@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<div class="page-a-propos">
+  <div class="conteneur-a-propos">
+    <h1>{{ t.t('aProposTitre') }}</h1>
+    <p>{{ t.t('aProposTexte1') }}</p>
+
+    <div class="bloc-localisation">
+      <h2>{{ t.t('localisationTitre') }}</h2>
+      <p class="adresse-texte">{{ t.t('adresseCommune') }}</p>
+      <p class="horaires-texte">{{ t.t('horairesCommune') }}</p>
+
+      <div class="conteneur-carte-propos">
+        <iframe
+          src="https://www.google.com/maps?q=35.848535,-5.3552985&hl=fr&z=16&output=embed"
+          width="100%"
+          height="300"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>

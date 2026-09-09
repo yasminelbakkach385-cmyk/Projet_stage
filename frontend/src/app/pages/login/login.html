@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div class="barre-langue-seule">
+  <button type="button" (click)="t.changerLangue('fr')" [class.actif]="t.langueActuelle() === 'fr'">FR</button>
+  <button type="button" (click)="t.changerLangue('ar')" [class.actif]="t.langueActuelle() === 'ar'">AR</button>
+</div>
+
+<div class="page-connexion">
+  <form class="carte-connexion" (ngSubmit)="seConnecter()">
+    <h1>{{ t.t('connexion') }}</h1>
+
+    <div *ngIf="erreur" class="message-erreur">{{ erreur }}</div>
+
+    <label>{{ t.t('email') }}</label>
+    <input type="email" [(ngModel)]="email" name="email" required />
+
+    <label>{{ t.t('motDePasse') }}</label>
+    <input type="password" [(ngModel)]="password" name="password" required />
+
+    <button type="submit" [disabled]="chargement">
+      {{ chargement ? '...' : t.t('seConnecter') }}
+    </button>
+
+    <p class="lien-register">{{ t.t('pasDeCompte') }} <a routerLink="/register">{{ t.t('creerCompte') }}</a></p>
+  </form>
+</div>
+<div class="page-connexion">
+  <form class="carte-connexion" (ngSubmit)="seConnecter()">
+    <h1>{{ t.t('connexion') }}</h1>
+
+    <div *ngIf="erreur" class="message-erreur">{{ erreur }}</div>
+
+    <label>{{ t.t('email') }}</label>
+    <input type="email" [(ngModel)]="email" name="email" required />
+
+    <label>{{ t.t('motDePasse') }}</label>
+    <input type="password" [(ngModel)]="password" name="password" required />
+
+    <button type="submit" [disabled]="chargement">
+      {{ chargement ? '...' : t.t('seConnecter') }}
+    </button>
+
+    <p class="lien-register">{{ t.t('pasDeCompte') }} <a routerLink="/register">{{ t.t('creerCompte') }}</a></p>
+  </form>
+</div>

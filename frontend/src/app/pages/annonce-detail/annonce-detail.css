@@ -1,0 +1,40 @@
+.page-annonce {
+  min-height: 80vh;
+  background: #F5F7FA;
+  padding: 40px 24px 80px;
+}
+
+.conteneur-annonce {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 12px rgba(15, 45, 77, 0.08);
+}
+
+.date-annonce {
+  color: #6B7785;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.conteneur-annonce h1 {
+  color: #0F2D4D;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.contenu-annonce {
+  color: #444;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.lien-retour {
+  display: inline-block;
+  margin-top: 32px;
+  color: #17A6B5;
+  font-weight: 600;
+  text-decoration: none;
+}

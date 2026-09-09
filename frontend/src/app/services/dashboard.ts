@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface StatItem {
+  [key: string]: string | number;
+}
+
 export interface DashboardStats {
   total: number;
+  urgentes: number;
   par_categorie: { categorie: string; total: number }[];
   par_statut: { statut: string; total: number }[];
-  urgentes: number;
   par_quartier: { quartier: string; total: number }[];
-  evolution_7_jours: { jour: string; total: number }[];
 }
 
 @Injectable({

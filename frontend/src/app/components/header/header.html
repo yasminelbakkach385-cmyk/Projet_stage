@@ -1,0 +1,28 @@
+<header class="entete-site">
+  <div class="entete-logo">
+    <img src="/logo-fnideq.png" alt="Commune de Fnideq" />
+    <span>جماعة الفنيدق</span>
+  </div>
+
+  <nav class="entete-nav">
+    <a routerLink="/" routerLinkActive="actif" [routerLinkActiveOptions]="{exact: true}">{{ t.t('accueil') }}</a>
+    <ng-container *ngIf="!authService.estEmploye()">
+      <a routerLink="/deposer" routerLinkActive="actif">{{ t.t('deposerPlainte') }}</a>
+      <a routerLink="/suivre" routerLinkActive="actif">{{ t.t('suivrePlainte') }}</a>
+    </ng-container>
+  </nav>
+
+  <div class="entete-droite">
+    <div class="switch-langue">
+      <button type="button" (click)="t.changerLangue('fr')" [class.actif]="t.langueActuelle() === 'fr'">FR</button>
+      <button type="button" (click)="t.changerLangue('ar')" [class.actif]="t.langueActuelle() === 'ar'">AR</button>
+    </div>
+
+    <ng-container *ngIf="authService.estConnecte(); else nonConnecte">
+      <button class="btn-espace" (click)="seDeconnecter()">{{ t.t('deconnexion') }}</button>
+    </ng-container>
+    <ng-template #nonConnecte>
+      <a routerLink="/login" class="btn-espace">{{ t.t('connexion') }}</a>
+    </ng-template>
+  </div>
+</header>

@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<div class="conteneur-dashboard">
+  <aside class="barre-laterale">
+    <nav>
+      <a class="lien-menu" routerLink="/dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        <span>{{ t.t('tableauDeBord') }}</span>
+      </a>
+      <a class="lien-menu" routerLink="/reclamations-admin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        <span>{{ t.t('reclamations') }}</span>
+      </a>
+      <a class="lien-menu" routerLink="/rapports">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18M8 17V9m5 8V5m5 12v-6"/></svg>
+        <span>{{ t.t('rapports') }}</span>
+      </a>
+      <a class="lien-menu actif" routerLink="/carte-admin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 20l-5-2V4l5 2 6-2 5 2v14l-5-2-6 2z"/></svg>
+        <span>{{ t.t('carte') }}</span>
+      </a>
+      <a class="lien-menu" routerLink="/annonces-admin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v4H4zM4 12h10v8H4zM17 12h3v8h-3z"/></svg>
+        <span>{{ t.t('annonces') }}</span>
+      </a>
+      <a class="lien-menu" routerLink="/parametres">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+        <span>{{ t.t('parametres') }}</span>
+      </a>
+    </nav>
+    <button class="lien-menu lien-deconnexion" (click)="seDeconnecter()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      <span>{{ t.t('deconnexion') }}</span>
+    </button>
+  </aside>
+
+  <div class="page-dashboard">
+    <h1>{{ t.t('carte') }}</h1>
+
+    <div *ngIf="chargement" class="etat-chargement"><p>{{ t.t('chargementDonnees') }}</p></div>
+
+    <div class="legende" *ngIf="stats && !chargement">
+      <span><span class="pastille vert"></span> Faible</span>
+      <span><span class="pastille orange"></span> Moyen</span>
+      <span><span class="pastille rouge"></span> Élevé</span>
+    </div>
+
+    <div id="carte-leaflet" class="conteneur-carte"></div>
+  </div>
+</div>

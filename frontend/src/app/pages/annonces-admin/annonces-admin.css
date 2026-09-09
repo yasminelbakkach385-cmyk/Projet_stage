@@ -1,0 +1,146 @@
+.conteneur-dashboard {
+  display: flex;
+}
+
+.barre-laterale {
+  width: 220px;
+  background: #0F2D4D;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+  flex-shrink: 0;
+}
+
+.barre-laterale nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lien-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  color: #B8C7D9;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+}
+
+.lien-menu svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.lien-menu:hover,
+.lien-menu.actif {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.lien-deconnexion {
+  color: #F5A6A0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 12px;
+  padding-top: 20px;
+}
+
+.page-dashboard {
+  padding: 24px 32px 60px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #F4F6F9;
+  min-height: 100vh;
+  flex: 1;
+}
+
+.page-dashboard h1 {
+  color: #0F2D4D;
+  font-size: 1.6rem;
+  margin: 0 0 4px;
+}
+
+.carte-formulaire {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(15, 45, 77, 0.06);
+}
+
+.carte-formulaire h2 {
+  font-size: 1rem;
+  color: #0F2D4D;
+  margin: 0 0 14px;
+}
+
+.carte-formulaire input,
+.carte-formulaire textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #E1E5EA;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.carte-formulaire button {
+  background: #0F2D4D;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.liste-annonces {
+  background: white;
+  border-radius: 12px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 8px rgba(15, 45, 77, 0.06);
+}
+
+.item-annonce {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.item-annonce:last-child {
+  border-bottom: none;
+}
+
+.item-annonce h3 {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  color: #0F2D4D;
+}
+
+.item-annonce p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.btn-supprimer {
+  background: #E74C3C;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
