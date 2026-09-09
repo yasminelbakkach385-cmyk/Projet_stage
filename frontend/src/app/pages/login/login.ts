@@ -1,51 +1,49 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth';
+import { TranslationService } from '../../services/translation';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrl: './login.css'
 })
 export class Login {
-  email = '';
-  password = '';
-  errorMessage = '';
-  successMessage = '';
-  isLoading = false;
+  email: string = '';
+  password: string = '';
+  erreur: string = '';
+  chargement: boolean = false;
 
   constructor(
-    private http: HttpClient,
+    private authService: AuthService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    public t: TranslationService
   ) {}
 
-  onSubmit() {
-    if (this.isLoading) return;
+  seConnecter(): void {
+    this.erreur = '';
+    this.chargement = true;
 
-    this.errorMessage = '';
-    this.successMessage = '';
-    this.isLoading = true;
+    this.authService.login(this.email, this.password).subscribe({
+      next: (reponse) => {
+        this.authService.enregistrerSession(reponse.token, reponse.user);
+        this.chargement = false;
 
-    this.http.post('http://localhost:8000/api/login', {
-      email: this.email,
-      password: this.password,
-    }).subscribe({
-      next: (response: any) => {
-        this.successMessage = 'تم تسجيل الدخول بنجاح!';
-        this.isLoading = false;
-        localStorage.setItem('token', response.token);
-        this.cdr.detectChanges();
+        if (reponse.user.role === 'employe') {
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.router.navigate(['/']);
+        }
       },
-      error: (error) => {
-        this.isLoading = false;
-        this.errorMessage = 'البريد الإلكتروني أو كلمة السر غير صحيحة';
+      error: (err) => {
+        this.erreur = this.t.t('erreurConnexion');
+        this.chargement = false;
         this.cdr.detectChanges();
-      },
+      }
     });
   }
 }

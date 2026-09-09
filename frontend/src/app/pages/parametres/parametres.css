@@ -1,0 +1,123 @@
+.page-dashboard {
+  padding: 24px 32px 60px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #F4F6F9;
+  min-height: 100vh;
+  flex: 1;
+}
+
+.page-dashboard h1 {
+  color: #0F2D4D;
+  font-size: 1.6rem;
+  margin: 0 0 20px;
+}
+
+.carte-compte {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 8px rgba(15, 45, 77, 0.06);
+  margin-bottom: 20px;
+}
+
+.avatar-initiales {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #0F2D4D;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.infos-compte h2 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+  color: #0F2D4D;
+}
+
+.infos-compte p {
+  margin: 0 0 8px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.badge-role {
+  background: #EAF7ED;
+  color: #2FA84F;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.carte-langue {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(15, 45, 77, 0.06);
+}
+
+.carte-langue h2 {
+  font-size: 1rem;
+  color: #0F2D4D;
+  margin: 0 0 8px;
+}
+
+.carte-langue p {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.conteneur-dashboard { display: flex; }
+
+.barre-laterale {
+  width: 220px;
+  background: #0F2D4D;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+  flex-shrink: 0;
+}
+
+.barre-laterale nav { display: flex; flex-direction: column; gap: 4px; }
+
+.lien-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  color: #B8C7D9;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+}
+
+.lien-menu svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.lien-menu:hover, .lien-menu.actif {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.lien-deconnexion {
+  color: #F5A6A0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 12px;
+  padding-top: 20px;
+}

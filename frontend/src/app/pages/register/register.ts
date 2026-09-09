@@ -1,61 +1,44 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth';
+import { TranslationService } from '../../services/translation';
 
 @Component({
   selector: 'app-register',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './register.html',
-  styleUrl: './register.css',
+  styleUrl: './register.css'
 })
 export class Register {
-  name = '';
-  email = '';
-  password = '';
-  errorMessage = '';
-  successMessage = '';
-  isLoading = false;
+  name: string = '';
+  email: string = '';
+  password: string = '';
+  erreur: string = '';
+  chargement: boolean = false;
 
   constructor(
-    private http: HttpClient,
+    private authService: AuthService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    public t: TranslationService
   ) {}
 
-  onSubmit() {
-    if (this.isLoading) return;
+  sInscrire(): void {
+    this.erreur = '';
+    this.chargement = true;
 
-    this.errorMessage = '';
-    this.successMessage = '';
-    this.isLoading = true;
-
-    this.http.post('http://localhost:8000/api/register', {
-      name: this.name,
-      email: this.email,
-      password: this.password,
-    }).subscribe({
-      next: (response: any) => {
-        this.successMessage = 'تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول';
-        this.isLoading = false;
-        this.name = '';
-        this.email = '';
-        this.password = '';
-        this.cdr.detectChanges();
+    this.authService.register(this.name, this.email, this.password).subscribe({
+      next: (reponse) => {
+        this.chargement = false;
+        this.router.navigate(['/login']);
       },
-      error: (error) => {
-        this.isLoading = false;
-        if (error.error?.errors?.email) {
-          this.errorMessage = 'هذا البريد الإلكتروني مستعمل من قبل';
-        } else if (error.error?.errors?.password) {
-          this.errorMessage = 'كلمة السر يجب أن تكون 8 أحرف على الأقل وتحتوي على حرف كبير وحرف صغير ورقم';
-        } else {
-          this.errorMessage = 'وقع خطأ، تأكد من المعلومات';
-        }
+      error: (err) => {
+        this.erreur = this.t.t('erreurInscription');
+        this.chargement = false;
         this.cdr.detectChanges();
-      },
+      }
     });
   }
 }

@@ -1,79 +1,133 @@
-.register-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.page-connexion {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  font-family: 'Segoe UI', Tahoma, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F6F1E7;
+  font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
-.register-card {
+.carte-connexion {
   background: white;
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 400px;
-  direction: rtl;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(18, 60, 105, 0.1);
+  width: 320px;
 }
 
-.register-card h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
+.carte-connexion h1 {
+  color: #123C69;
+  margin: 0 0 24px;
+  font-size: 1.6rem;
 }
 
-.form-group {
-  margin-bottom: 1.2rem;
-}
-
-.form-group label {
+.carte-connexion label {
   display: block;
-  margin-bottom: 0.4rem;
-  color: #555;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  color: #444;
+  margin-bottom: 6px;
+  margin-top: 16px;
 }
 
-.form-group input {
+.carte-connexion input {
   width: 100%;
-  padding: 0.7rem;
-  border: 1px solid #ddd;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
   box-sizing: border-box;
 }
 
-button[type="submit"] {
+.carte-connexion button {
   width: 100%;
-  padding: 0.8rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin-top: 24px;
+  padding: 12px;
+  background: #123C69;
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 1rem;
+  cursor: pointer;
+}
+
+.carte-connexion button:disabled {
+  opacity: 0.6;
+}
+
+.message-erreur {
+  background: #FDECEA;
+  color: #B3261E;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.lien-register {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 20px;
+  color: #555;
+}
+
+.lien-register a {
+  color: #123C69;
+  font-weight: 600;
+}
+
+.switch-langue {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.switch-langue button {
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  background: white;
+  color: #123C69;
+  border-radius: 6px;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 0.5rem;
 }
 
-.error {
-  color: #e74c3c;
-  text-align: center;
-  margin-top: 1rem;
-  padding: 0.8rem;
-  border-radius: 8px;
-  background-color: #fdecea;
-  font-weight: bold;
+.switch-langue button.actif {
+  background: #123C69;
+  color: white;
+  border-color: #123C69;
 }
 
-.success {
-  color: #27ae60;
-  text-align: center;
-  margin-top: 1rem;
-  padding: 0.8rem;
-  border-radius: 8px;
-  background-color: #eafaf1;
-  font-weight: bold;
+:host-context([dir="rtl"]) .carte-connexion label {
+  text-align: right;
+}
+
+:host-context([dir="rtl"]) .lien-register {
+  direction: rtl;
+}
+
+.barre-langue-seule {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 16px 24px;
+  background: #F6F1E7;
+}
+
+.barre-langue-seule button {
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  background: white;
+  color: #123C69;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.barre-langue-seule button.actif {
+  background: #123C69;
+  color: white;
+  border-color: #123C69;
 }

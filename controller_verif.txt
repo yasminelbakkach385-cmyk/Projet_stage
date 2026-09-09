@@ -1,0 +1,21 @@
+﻿// CrÃ©er une nouvelle plainte
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'titre' => 'required|string|max:255',
+        'description' => 'required|string',
+        'categorie' => 'required|string',
+        'quartier' => 'nullable|string',
+        'photo' => 'nullable|image|max:5120',
+    ]);
+
+    $validated['user_id'] = $request->user()->id;
+
+    if ($request->hasFile('photo')) {
+        $validated['photo'] = $request->file('photo')->store('plaintes', 'public');
+    }
+
+    $plainte = Plainte::create($validated);
+
+    return response()->json($plainte, 201);
+}

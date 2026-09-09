@@ -1,0 +1,154 @@
+.page-plainte {
+  min-height: 100vh;
+  background: #F6F1E7;
+  padding: 60px 20px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.carte-plainte {
+  background: white;
+  border-radius: 14px;
+  padding: 40px;
+  width: 520px;
+  max-width: 100%;
+  box-shadow: 0 4px 20px rgba(18, 60, 105, 0.1);
+  height: fit-content;
+}
+
+.carte-plainte h1 {
+  color: #123C69;
+  margin: 0 0 24px;
+  font-size: 1.6rem;
+}
+
+.carte-plainte label {
+  display: block;
+  font-size: 0.85rem;
+  color: #444;
+  margin-bottom: 6px;
+  margin-top: 16px;
+}
+
+.carte-plainte input[type="text"],
+.carte-plainte input[type="tel"],
+.carte-plainte textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.grille-categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.carte-categorie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.carte-categorie svg {
+  width: 26px;
+  height: 26px;
+  color: #2E86AB;
+}
+
+.carte-categorie span {
+  font-size: 0.78rem;
+  text-align: center;
+  color: #333;
+}
+
+.carte-categorie.selectionnee {
+  border-color: #2E86AB;
+  background: #EAF4F8;
+}
+
+.zone-fichier {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.zone-fichier input[type="file"] {
+  display: none;
+}
+
+.bouton-fichier {
+  background: #eee;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  margin: 0 !important;
+}
+
+.nom-fichier {
+  font-size: 0.85rem;
+  color: #777;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.carte-plainte button[type="submit"] {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px;
+  background: #123C69;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.carte-plainte button[type="submit"]:disabled {
+  opacity: 0.6;
+}
+
+.message-erreur {
+  background: #FDECEA;
+  color: #B3261E;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.message-succes {
+  text-align: center;
+  color: #123C69;
+  font-size: 1.1rem;
+}
+
+.message-succes a {
+  color: #2E86AB;
+  font-weight: 600;
+}
+
+.erreur-champ {
+  color: #E74C3C;
+  font-size: 0.8rem;
+  margin: 4px 0 0;
+}

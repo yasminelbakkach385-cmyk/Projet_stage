@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+<div class="page-annonce">
+  <div class="conteneur-annonce">
+    <div *ngIf="chargement">{{ t.t('chargementDonnees') }}</div>
+
+    <div *ngIf="introuvable" class="message-erreur">
+      {{ t.t('annonceIntrouvable') }}
+    </div>
+
+    <div *ngIf="annonce && !chargement">
+      <p class="date-annonce">{{ annonce.created_at | date:'dd/MM/yyyy' }}</p>
+      <h1>{{ annonce.titre }}</h1>
+      <p class="contenu-annonce">{{ annonce.contenu }}</p>
+    </div>
+
+    <a routerLink="/" class="lien-retour">{{ t.t('retourAccueil') }}</a>
+  </div>
+</div>
