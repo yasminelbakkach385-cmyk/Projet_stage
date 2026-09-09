@@ -106,6 +106,7 @@
 :host-context([dir="rtl"]) .lien-register {
   direction: rtl;
 }
+
 .barre-langue-seule {
   display: flex;
   justify-content: flex-end;
