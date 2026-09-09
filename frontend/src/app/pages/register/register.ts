@@ -50,7 +50,7 @@ export class Register {
         if (error.error?.errors?.email) {
           this.errorMessage = 'هذا البريد الإلكتروني مستعمل من قبل';
         } else if (error.error?.errors?.password) {
-          this.errorMessage = 'كلمة السر يجب أن تكون 6 أحرف على الأقل';
+          this.errorMessage = 'كلمة السر يجب أن تكون 8 أحرف على الأقل وتحتوي على حرف كبير وحرف صغير ورقم';
         } else {
           this.errorMessage = 'وقع خطأ، تأكد من المعلومات';
         }
